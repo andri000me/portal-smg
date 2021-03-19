@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `bsi-sme`
 --
+DROP DATABASE IF EXISTS `bsi-sme`;
+CREATE DATABASE `bsi-sme`;
+USE `bsi-sme`;
 
 -- --------------------------------------------------------
 
