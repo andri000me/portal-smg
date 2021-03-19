@@ -327,24 +327,31 @@ $this->load->view('template/navbar');
 			allowOutsideClick: false,
 		}).then((result) => {
 			if (result.value) {
+				$(".preloader").fadeIn("slow");
+				$("p.text-loading>strong").text('Mohon tunggu, permintaan sedang di proses');
+
 				$.ajax({
 					url: "<?= site_url('dbs/hapus_file/') ?>" + id,
 					type: "GET",
 					dataType: "JSON",
-					success: function(data) {
-						Swal.fire({
-							title: "Sukses",
-							text: "Data telah berhasil dihapus",
-							icon: "success",
-							timer: 2000,
-							showConfirmButton: false,
-							allowOutsideClick: false,
-						}).then((result) => {
-							if (result.dismiss === Swal.DismissReason.timer) {
-								location.reload();
-							}
-						});
-					},
+					success: function(response) {
+						if (response.status === true) {
+							Swal.fire({
+								title: response.msg['title'],
+								icon: response.msg['icon'],
+								text: response.msg['text'],
+								timer: 2000,
+								showConfirmButton: false,
+								allowOutsideClick: false,
+							}).then((result) => {
+								if (result.dismiss === Swal.DismissReason.timer) {
+									location.reload();
+								}
+							});
+						}
+
+						$(".preloader").fadeOut("slow");
+					}
 				});
 			}
 		});
@@ -390,7 +397,7 @@ $this->load->view('template/navbar');
 						$(".preloader").fadeOut("slow");
 						// $("p.text-loading>strong").text('Please Wait');
 					},
-					error: function(xhr, status, th){
+					error: function(xhr, status, th) {
 						console.log(xhr + " - " + status + " - " + th);
 					}
 				});

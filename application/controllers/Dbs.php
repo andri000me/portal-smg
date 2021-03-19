@@ -1,12 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-require 'vendor/autoload.php';
-
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Reader\Csv;
-use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
-
 class Dbs extends CI_Controller
 {
 	public function __construct()
@@ -134,9 +128,26 @@ class Dbs extends CI_Controller
 		$file = $this->db->get_where('tbl_dbs', ['id' => $id])->row_array();
 		unlink('./assets/upload/' . $file['file_name']);
 
+		$this->db->trans_start();
 		$this->db->delete('tbl_dbs', ['id' => $id]);
+		$this->db->delete('tbl_performance', ['tgl_data' => $file['tgl_data']]);
+		$this->db->trans_complete();
 
-		echo json_encode(['status' => true]);
+		if ($this->db->trans_status() === false) {
+			$this->db->trans_rollback();
+
+			$msg['title'] = 'Oops!';
+			$msg['icon'] = 'error';
+			$msg['text'] = 'Terjadi kesalahan, data gagal dihapus';
+		} else {
+			$this->db->trans_commit();
+
+			$msg['title'] = 'Sukses';
+			$msg['icon'] = 'success';
+			$msg['text'] = 'Data berhasil dihapus';
+		}
+
+		echo json_encode(['status' => true, 'msg' => $msg]);
 		exit;
 	}
 
