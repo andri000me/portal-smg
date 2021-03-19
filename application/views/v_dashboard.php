@@ -48,7 +48,7 @@ $this->load->view('template/navbar');
 								<img src="<?= base_url('assets/dist/') . 'img/img-icon.png' ?>" style="height: 60px; width: 60px;">
 							</div>
 							<div class="col-md">
-								<h5 class="card-title">NPF</h5>
+								<h5 class="card-title">KOL 2</h5>
 								<p class="card-text my-2" style="font-size: 20px;">Rp. <?= number_format(rand() / 1000000, 2) ?> Jt</p>
 								<p class="card-subtitle mb-2 text-muted">Posisi 31 Feb 2021</p>
 							</div>
@@ -64,7 +64,7 @@ $this->load->view('template/navbar');
 								<img src="<?= base_url('assets/dist/') . 'img/img-icon.png' ?>" style="height: 60px; width: 60px;">
 							</div>
 							<div class="col-md">
-								<h5 class="card-title">Dana</h5>
+								<h5 class="card-title">NPF</h5>
 								<p class="card-text my-2" style="font-size: 20px;">Rp. <?= number_format(rand() / 1000000, 2) ?> Jt</p>
 								<p class="card-subtitle mb-2 text-muted">Posisi 31 Feb 2021</p>
 							</div>
