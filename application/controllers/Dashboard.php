@@ -14,7 +14,7 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		$qry_posisi = "SELECT * FROM (SELECT tgl_data, sum(ospokok) as outstanding, sum(case when tgl_cair = tgl_data then plafond else 0 end) as plafond FROM `tbl_performance` GROUP BY tgl_data ORDER BY tgl_data DESC LIMIT 12) AS t1 ORDER BY tgl_data ASC";
+		$qry_posisi = "SELECT * FROM (SELECT tgl_data, sum(ospokok) as outstanding, sum(case when tgl_cair = tgl_data then plafond else 0 end) as plafond FROM `tbl_performance` WHERE tgl_data != '0000-00-00' GROUP BY tgl_data ORDER BY tgl_data DESC LIMIT 12) AS t1 ORDER BY tgl_data ASC";
 
 		$labels = array();
 		$outstanding = array();
