@@ -32,6 +32,7 @@ $this->load->view('template/navbar');
 										<select class="form-control selectpicker" id="filter_module" name="filter_module">
 											<option value="">-- Please Select --</option>
 											<option value="Performance">Performance</option>
+											<option value="Reporting">Reporting</option>
 											<option value="Realisasi Pencairan">Realisasi Pencairan</option>
 										</select>
 									</div>
@@ -115,6 +116,7 @@ $this->load->view('template/navbar');
 							<select class="form-control selectpicker" id="module" name="module">
 								<option value="">-- Please Select --</option>
 								<option>Performance</option>
+								<option value="Reporting">Reporting</option>
 								<option>Realisasi Pencairan</option>
 							</select>
 							<small class="help-text" id="module-feedback"></small>
@@ -170,22 +172,39 @@ $this->load->view('template/navbar');
 		var filename = $(this).val();
 		// var ext = /(\.xlsx|\.xls|\.txt|\.csv)$/i;
 		var ext = /(\.txt|\.csv)$/i;
+		var ext_pdf = /(\.pdf)$/i;
 
 		if (filename == undefined || filename == "") {
 			$(this).next('.custom-file-label').html('No file chosen');
 		} else {
-			if (!ext.exec(filename)) {
-				Swal.fire({
-					title: 'Oops!',
-					text: 'Format file upload tidak sesuai, file yang diizinkan hanya txt/csv',
-					icon: 'warning',
-					allowOutsideClick: false,
-				});
+			if ($('#module').val() == 'Reporting') {
+				if (!ext_pdf.exec(filename)) {
+					Swal.fire({
+						title: 'Oops!',
+						text: 'Format file upload tidak sesuai, file yang diizinkan hanya pdf',
+						icon: 'warning',
+						allowOutsideClick: false,
+					});
 
-				$(this).next('.custom-file-label').html('No file chosen');
+					$(this).next('.custom-file-label').html('No file chosen');
+				} else {
+					uploaded = true;
+					$(this).next('.custom-file-label').html(evt.target.files[0].name);
+				}
 			} else {
-				uploaded = true;
-				$(this).next('.custom-file-label').html(evt.target.files[0].name);
+				if (!ext.exec(filename)) {
+					Swal.fire({
+						title: 'Oops!',
+						text: 'Format file upload tidak sesuai, file yang diizinkan hanya txt/csv',
+						icon: 'warning',
+						allowOutsideClick: false,
+					});
+
+					$(this).next('.custom-file-label').html('No file chosen');
+				} else {
+					uploaded = true;
+					$(this).next('.custom-file-label').html(evt.target.files[0].name);
+				}
 			}
 		}
 	});

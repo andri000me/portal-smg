@@ -66,8 +66,11 @@ class Dbs extends CI_Controller
 			$row[] = $dbs['upload_time'];
 
 			$opsi = '<a class="btn btn-xs btn-warning" href="' . site_url('dbs/download/' . $dbs['id']) . '" title="Download"><i class="fa fa-download"></i></a>';
+			if($dbs['module'] == 'Reporting'){
+				$opsi .= '<a class="btn btn-xs btn-info" href="' . base_url('assets/upload/' . $dbs['file_name']) . '" target="_blank" title="View"><i class="fa fa-eye"></i></a>';
+			}
 			if ($_SESSION['lv_user'] == 'admin') {
-				if ($dbs['update_posisi'] == 0) {
+				if ($dbs['update_posisi'] == 0 && $dbs['module'] != 'Reporting') {
 					$opsi .= '<span class="btn btn-xs btn-success" onclick="update_posisi(\'' . $dbs['id'] . '\')" title="Sync"><i class="fa fa-sync-alt"></i></span>';
 				}
 				$opsi .= '<span class="btn btn-xs btn-danger" onclick="hapus_file(\'' . $dbs['id'] . '\')" title="Delete"><i class="fa fa-trash"></i></span>';
@@ -101,7 +104,7 @@ class Dbs extends CI_Controller
 		$config = array(
 			'upload_path' => './assets/upload/',
 			// 'allowed_types' => 'xlsx|xls|csv|txt'
-			'allowed_types' => 'csv|txt'
+			'allowed_types' => 'csv|txt|pdf'
 		);
 
 		$this->load->library('upload', $config);
