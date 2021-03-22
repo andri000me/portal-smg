@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Dashboard SME</title>
+	<title>Portal SMG</title>
 	<link rel="shortcut icon" type="image/jpg" href="<?= base_url('assets/dist/') . 'img/favicon.png' ?>">
 
 	<!-- Bootstrap core CSS -->
