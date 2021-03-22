@@ -49,8 +49,8 @@ $this->load->view('template/navbar');
 							</div>
 							<div class="col-md">
 								<h5 class="card-title">KOL 2</h5>
-								<p class="card-text my-2" style="font-size: 20px;">Rp. <?= number_format(rand() / 1000000, 2) ?> Jt</p>
-								<p class="card-subtitle mb-2 text-muted">Posisi 31 Feb 2021</p>
+								<p class="card-text my-2" style="font-size: 20px;">Rp. <?= number_format(!isset($kol2['ospokok']) ? 0 : $kol2['ospokok'] / 1000000000, 2) ?> M</p>
+								<p class="card-subtitle mb-2 text-muted">Posisi <?= !isset($kol2['tgl_data']) ? '-' : tgl_indo($kol2['tgl_data']) ?></p>
 							</div>
 						</div>
 					</div>
@@ -65,8 +65,8 @@ $this->load->view('template/navbar');
 							</div>
 							<div class="col-md">
 								<h5 class="card-title">NPF</h5>
-								<p class="card-text my-2" style="font-size: 20px;">Rp. <?= number_format(rand() / 1000000, 2) ?> Jt</p>
-								<p class="card-subtitle mb-2 text-muted">Posisi 31 Feb 2021</p>
+								<p class="card-text my-2" style="font-size: 20px;">Rp. <?= number_format(!isset($npf['ospokok']) ? 0 : $npf['ospokok'] / 1000000000, 2) ?> M</p>
+								<p class="card-subtitle mb-2 text-muted">Posisi <?= !isset($npf['tgl_data']) ? '-' : tgl_indo($npf['tgl_data']) ?></p>
 							</div>
 						</div>
 					</div>
