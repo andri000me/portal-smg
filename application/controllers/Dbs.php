@@ -66,7 +66,7 @@ class Dbs extends CI_Controller
 			$row[] = $dbs['upload_time'];
 
 			$opsi = '<a class="btn btn-xs btn-warning" href="' . site_url('dbs/download/' . $dbs['id']) . '" title="Download"><i class="fa fa-download"></i></a>';
-			if($dbs['module'] == 'Reporting'){
+			if ($dbs['module'] == 'Reporting') {
 				$opsi .= '<a class="btn btn-xs btn-info" href="' . base_url('assets/upload/' . $dbs['file_name']) . '" target="_blank" title="View"><i class="fa fa-eye"></i></a>';
 			}
 			if ($_SESSION['lv_user'] == 'admin') {
@@ -174,7 +174,7 @@ class Dbs extends CI_Controller
 		$msg = array();
 		$file_path = FCPATH . $file;
 
-		$qry = "LOAD DATA LOCAL INFILE '". str_replace("\\", "/", $file_path) . "' ";
+		$qry = "LOAD DATA LOCAL INFILE '" . str_replace("\\", "/", $file_path) . "' ";
 		$qry .= "INTO TABLE `tbl_gross` ";
 		$qry .= "FIELDS TERMINATED BY '|' ";
 		$qry .= "LINES TERMINATED BY '\\n' ";
