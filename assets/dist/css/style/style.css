@@ -1,7 +1,12 @@
 /* Custom page CSS */
-
-/* Not required for template or sticky footer method. */
-
+/*
+|--------------------------------------------------------------------------
+| Sticky Footer
+|--------------------------------------------------------------------------
+|
+| untuk mengatur posisi footer tetap statis
+|
+*/
 main > .container {
 	padding: 60px 15px 0;
 }
@@ -16,7 +21,14 @@ main > .container {
 	padding-left: 15px;
 }
 
-/* Preloader Page */
+/*
+|--------------------------------------------------------------------------
+| Preloader
+|--------------------------------------------------------------------------
+|
+| Preloader pada saat halaman website belum tersedia
+|
+*/
 .preloader {
 	position: fixed;
 	top: 0;
@@ -43,6 +55,11 @@ main > .container {
 	font: 14px arial;
 }
 
+/*
+|--------------------------------------------------------------------------
+| Customize CSS
+|--------------------------------------------------------------------------
+*/
 /* Selectpicker */
 button.btn.dropdown-toggle {
 	background-color: #fff;
@@ -58,20 +75,42 @@ button.btn.dropdown-toggle {
 	margin: 0px 2px !important;
 }
 
+.border {
+	border-left: 0.5px solid #dee2e6;
+	border-right: 0.5px solid #dee2e6;
+}
 
+.border-left {
+	border-left: 0.5px solid #dee2e6;
+}
+
+.border-right {
+	border-right: 0.5px solid #dee2e6;
+}
+
+/* border radius card */
 .card {
 	border-radius: 10px;
 }
 
+/* disabeld menu export SVG apexchart */
 .apexcharts-menu-item.exportSVG {
 	display: none;
 }
 
+/* position dropdown menu user info */
 #dropdown-user {
 	left: -100%;
 }
 
-/* media query */
+/*
+|--------------------------------------------------------------------------
+| Media Query
+|--------------------------------------------------------------------------
+|
+| untuk mengatur tampilan website pada layar kecil
+|
+*/
 @media (min-width: 600px) {
 	#dropdown-user {
 		position: absolute;
