@@ -6,6 +6,7 @@ class Dashboard extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('M_dashboard', 'm_dash');
 
 		if (!isset($_SESSION['is_login'])) {
 			redirect(site_url('logout'));
@@ -14,32 +15,46 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		$qry_posisi = "SELECT * FROM (SELECT tgl_data, sum(ospokok) as outstanding, sum(case when tgl_cair = tgl_data then plafond else 0 end) as plafond FROM `tbl_performance` WHERE tgl_data != '0000-00-00' GROUP BY tgl_data ORDER BY tgl_data DESC LIMIT 12) AS t1 ORDER BY tgl_data ASC";
-		$kol2 = "SELECT tgl_data, kol_flag, sum(ospokok) as ospokok FROM tbl_performance where kol_flag = 2 and tgl_data = (SELECT MAX(tgl_data) FROM tbl_performance)";
-		$npf = "SELECT tgl_data, kol_flag, sum(ospokok) as ospokok FROM tbl_performance where kol_flag = 'NPF' and tgl_data = (SELECT MAX(tgl_data) FROM tbl_performance)";
+		$this->load->view('v_dashboard');
+	}
 
+	public function get_posisi()
+	{
 		$labels = array();
 		$outstanding = array();
 		$plafond = array();
-		$nett = array();
 
-		$result = $this->db->query($qry_posisi)->result_array();
+		$result = $this->m_dash->posisi();
 		foreach ($result as $res) {
 			array_push($labels, tgl_indo($res['tgl_data']));
 			array_push($outstanding, $res['outstanding']);
 			array_push($plafond, $res['plafond']);
 		}
 
-		$data['labels'] = json_encode($labels);
-		$data['outstanding'] = json_encode($outstanding);
-		$data['plafond'] = json_encode($plafond);
+		$chart = array(
+			array(
+				'name' => 'Outstanding',
+				'type' => 'column',
+				'data' => $outstanding
+			),
+			array(
+				'name' => 'Realisasi Pencairan',
+				'type' => 'line',
+				'data' => $plafond
+			)
+		);
 
-		$data['posisi'] = end($labels);
-		$data['performance'] = end($outstanding);
-		$data['pencairan'] = end($plafond);
-		$data['kol2'] = $this->db->query($kol2)->row_array();
-		$data['npf'] = $this->db->query($npf)->row_array();
+		$posisi = $this->m_dash->posisi_today();
+		$info = array(
+			'tgl_data' => tgl_indo($posisi['tgl_data']),
+			'ospokok' => number_format($posisi['ospokok'] / 1000000000, 2),
+			'plafond' => number_format($posisi['plafond'] / 1000000000, 2),
+			'kol2' => number_format($posisi['kol2'] / 1000000000, 2),
+			'npf' => number_format($posisi['npf'] / 1000000000, 2)
+		);
 
-		$this->load->view('v_dashboard', $data);
+		// echo json_encode(['data' => $chart, 'labels' => $labels]);
+		echo json_encode(['data' => $chart, 'labels' => $labels, 'posisi' => $info]);
+		exit;
 	}
 }

@@ -11,14 +11,22 @@ $this->load->view('template/navbar');
 			<div class="col-md-3 col-sm-6">
 				<div class="card mb-3">
 					<div class="card-body p-2">
-						<div class="row">
+						<div class="preloader_page text-center" style="padding: inherit;">
+							<div class="loading_page">
+								<div class="spinner-border" role="status">
+									<span class="sr-only">Loading...</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="row d-none">
 							<div class="col-md-3">
 								<img src="<?= base_url('assets/dist/') . 'img/img-icon.png' ?>" style="height: 60px; width: 60px;">
 							</div>
 							<div class="col-md">
 								<h5 class="card-title">Outstanding</h5>
-								<p class="card-text my-2" style="font-size: 20px;">Rp. <?= number_format(!isset($performance) ? 0 : $performance / 1000000000, 2) ?> M</p>
-								<p class="card-subtitle mb-2 text-muted">Posisi <?= !isset($posisi) ? '-' : $posisi ?></p>
+								<p id="ospokok" class="card-text my-2" style="font-size: 20px;"></p>
+								<p class="card-subtitle mb-2 text-muted tgl_data"></p>
 							</div>
 						</div>
 					</div>
@@ -27,14 +35,22 @@ $this->load->view('template/navbar');
 			<div class="col-md-3 col-sm-6">
 				<div class="card mb-3">
 					<div class="card-body p-2">
-						<div class="row">
+						<div class="preloader_page text-center" style="padding: inherit;">
+							<div class="loading_page">
+								<div class="spinner-border" role="status">
+									<span class="sr-only">Loading...</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="row d-none">
 							<div class="col-md-3">
 								<img src="<?= base_url('assets/dist/') . 'img/img-icon.png' ?>" style="height: 60px; width: 60px;">
 							</div>
 							<div class="col-md">
 								<h5 class="card-title">Realisasi Pencairan</h5>
-								<p class="card-text my-2" style="font-size: 20px;">Rp. <?= number_format(!isset($pencairan) ? 0 : $pencairan / 1000000000, 2) ?> M</p>
-								<p class="card-subtitle mb-2 text-muted">Posisi <?= !isset($posisi) ? '-' : $posisi ?></p>
+								<p id="plafond" class="card-text my-2" style="font-size: 20px;"></p>
+								<p class="card-subtitle mb-2 text-muted tgl_data"></p>
 							</div>
 						</div>
 					</div>
@@ -43,14 +59,22 @@ $this->load->view('template/navbar');
 			<div class="col-md-3 col-sm-6">
 				<div class="card mb-3">
 					<div class="card-body p-2">
-						<div class="row">
+						<div class="preloader_page text-center" style="padding: inherit;">
+							<div class="loading_page">
+								<div class="spinner-border" role="status">
+									<span class="sr-only">Loading...</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="row d-none">
 							<div class="col-md-3">
 								<img src="<?= base_url('assets/dist/') . 'img/img-icon.png' ?>" style="height: 60px; width: 60px;">
 							</div>
 							<div class="col-md">
 								<h5 class="card-title">KOL 2</h5>
-								<p class="card-text my-2" style="font-size: 20px;">Rp. <?= number_format(!isset($kol2['ospokok']) ? 0 : $kol2['ospokok'] / 1000000000, 2) ?> M</p>
-								<p class="card-subtitle mb-2 text-muted">Posisi <?= !isset($kol2['tgl_data']) ? '-' : tgl_indo($kol2['tgl_data']) ?></p>
+								<p id="kol2" class="card-text my-2" style="font-size: 20px;"></p>
+								<p class="card-subtitle mb-2 text-muted tgl_data"></p>
 							</div>
 						</div>
 					</div>
@@ -59,14 +83,22 @@ $this->load->view('template/navbar');
 			<div class="col-md-3 col-sm-6">
 				<div class="card mb-3">
 					<div class="card-body p-2">
-						<div class="row">
+						<div class="preloader_page text-center" style="padding: inherit;">
+							<div class="loading_page">
+								<div class="spinner-border" role="status">
+									<span class="sr-only">Loading...</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="row d-none">
 							<div class="col-md-3">
 								<img src="<?= base_url('assets/dist/') . 'img/img-icon.png' ?>" style="height: 60px; width: 60px;">
 							</div>
 							<div class="col-md">
 								<h5 class="card-title">NPF</h5>
-								<p class="card-text my-2" style="font-size: 20px;">Rp. <?= number_format(!isset($npf['ospokok']) ? 0 : $npf['ospokok'] / 1000000000, 2) ?> M</p>
-								<p class="card-subtitle mb-2 text-muted">Posisi <?= !isset($npf['tgl_data']) ? '-' : tgl_indo($npf['tgl_data']) ?></p>
+								<p id="npf" class="card-text my-2" style="font-size: 20px;"></p>
+								<p class="card-subtitle mb-2 text-muted tgl_data"></p>
 							</div>
 						</div>
 					</div>
@@ -79,7 +111,15 @@ $this->load->view('template/navbar');
 			<div class="col-md-12">
 				<div class="card mb-3">
 					<div class="card-body">
-						<div id="chart"></div>
+						<div class="preloader_page text-center" style="padding: inherit;">
+							<div class="loading_page">
+								<div class="spinner-border" role="status">
+									<span class="sr-only">Loading...</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="d-none" id="chart"></div>
 					</div>
 				</div>
 			</div>
@@ -158,94 +198,103 @@ $this->load->view('template/navbar');
 	};
 	*/
 
-	var labelFormatter = function(value) {
-		var nf = new Intl.NumberFormat();
-		var val = Math.abs(value);
-		if (val >= 1000000000) {
-			val = nf.format((val / 1000000000).toFixed(2)) + " M";
-		}
-		return val;
-	};
+	$(document).ready(function() {
+		var labelFormatter = function(value) {
+			var nf = new Intl.NumberFormat();
+			var val = Math.abs(value);
+			if (val >= 1000000000) {
+				val = nf.format((val / 1000000000).toFixed(2)) + " M";
+			}
+			return val;
+		};
 
-	var options = {
-		series: [{
-			name: 'Outstanding',
-			type: 'column',
-			data: <?= $outstanding; ?>
-		}, {
-			name: 'Realisasi Pencairan',
-			type: 'line',
-			data: <?= $plafond; ?>
-		}],
-		chart: {
-			height: 350,
-			type: 'line',
-			toolbar: {
-				show: true,
-				offsetX: -20,
-				offsetY: 0,
-				tools: {
-					download: '<img src="<?= base_url('assets/dist/') . 'img/download-icon.png' ?>" width="25">',
-					selection: false,
-					zoom: false,
-					zoomin: false,
-					zoomout: false,
-					pan: false,
-					reset: false | '<img src="/static/icons/reset.png" width="20">',
-					customIcons: []
-				},
-				export: {
-					csv: {
-						filename: "<?= 'performance_' . date('Ymd') ?>",
-						columnDelimiter: '|',
-						headerCategory: 'category',
-						headerValue: 'value',
-						dateFormatter(timestamp) {
-							return new Date(timestamp).toLocaleDateString("en-US")
+		var options = {
+			series: [],
+			chart: {
+				height: 350,
+				type: 'line',
+				toolbar: {
+					show: true,
+					offsetX: -20,
+					offsetY: 0,
+					tools: {
+						download: '<img src="<?= base_url('assets/dist/') . 'img/download-icon.png' ?>" width="25">',
+						selection: false,
+						zoom: false,
+						zoomin: false,
+						zoomout: false,
+						pan: false,
+						reset: false | '<img src="/static/icons/reset.png" width="20">',
+						customIcons: []
+					},
+					export: {
+						csv: {
+							filename: "<?= 'performance_' . date('Ymd') ?>",
+							columnDelimiter: '|',
+							headerCategory: 'category',
+							headerValue: 'value',
+							dateFormatter(timestamp) {
+								return new Date(timestamp).toLocaleDateString("en-US")
+							}
+						},
+						png: {
+							filename: "<?= 'performance_' . date('Ymd') . '_chart' ?>",
 						}
 					},
-					png: {
-						filename: "<?= 'performance_' . date('Ymd') . '_chart' ?>",
-					}
+					autoSelected: 'zoom'
+				}
+			},
+			stroke: {
+				width: [0, 2]
+			},
+			markers: {
+				size: 4
+			},
+			title: {
+				text: 'Performance Level'
+			},
+			// dataLabels: {
+			// 	enabled: true,
+			// 	enabledOnSeries: [1],
+			// },
+			yaxis: [{
+				labels: {
+					formatter: labelFormatter
 				},
-				autoSelected: 'zoom'
-			},
-		},
-		stroke: {
-			width: [0, 2]
-		},
-		markers: {
-			size: 4
-		},
-		title: {
-			text: 'Performance Level'
-		},
-		// dataLabels: {
-		// 	enabled: true,
-		// 	enabledOnSeries: [1],
-		// },
-		labels: <?= $labels; ?>,
-		yaxis: [{
-			labels: {
-				formatter: labelFormatter
-			},
-			title: {
-				text: 'Outstanding',
-			}
-		}, {
-			opposite: true,
-			labels: {
-				formatter: labelFormatter
-			},
-			title: {
-				text: 'Realisasi Pencairan'
-			}
-		}]
-	};
+				title: {
+					text: 'Outstanding',
+				}
+			}, {
+				opposite: true,
+				labels: {
+					formatter: labelFormatter
+				},
+				title: {
+					text: 'Realisasi Pencairan'
+				}
+			}]
+		};
 
-	var chart = new ApexCharts(document.querySelector("#chart"), options);
+		var chart = new ApexCharts(document.querySelector("#chart"), options);
 
-	chart.render();
+		$.getJSON('<?= site_url('dashboard/get_posisi') ?>', function(response) {
+			$('.preloader_page').addClass('d-none');
+			$('#chart, .row').removeClass('d-none');
+
+			$('.tgl_data').text('Posisi ' + response.posisi['tgl_data']);
+			$('#ospokok').text('Rp. ' + response.posisi['ospokok'] + ' M');
+			$('#plafond').text('Rp. ' + response.posisi['plafond'] + ' M');
+			$('#kol2').text('Rp. ' + response.posisi['kol2'] + ' M');
+			$('#npf').text('Rp. ' + response.posisi['npf'] + ' M');
+
+			chart.updateSeries(response.data);
+			chart.updateOptions({
+				labels: response.labels
+			});
+		});
+
+		chart.render();
+	});
 </script>
 
 <?php $this->load->view('template/footer'); ?>
