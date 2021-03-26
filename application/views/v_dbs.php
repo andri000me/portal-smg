@@ -265,6 +265,7 @@ $this->load->view('template/navbar');
 
 	$('#btn_reset').click(function() { //button reset event click
 		$('#form_filter')[0].reset();
+		$('.selectpicker').selectpicker('refresh');
 		table.ajax.reload(); //just reload table
 	});
 
@@ -330,6 +331,7 @@ $this->load->view('template/navbar');
 <script>
 	function reset_form() {
 		$('#form_upload')[0].reset();
+		$('.selectpicker').selectpicker('refresh');
 		$(".help-text").removeClass("text-danger").empty();
 	}
 

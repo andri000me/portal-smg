@@ -42,7 +42,7 @@
 						Portofolio & QA
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Daily Performance</a>
+						<a class="dropdown-item" href="<?= site_url('performance') ?>">Daily Performance</a>
 						<a class="dropdown-item" href="#">Downgrade</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<?= site_url('dbs') ?>">DBS Performance</a>
