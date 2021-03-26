@@ -93,6 +93,15 @@ if (!function_exists('parse_tgl_db')) {
 	}
 }
 
+/*
+|--------------------------------------------------------------------------
+| Parse format size
+|--------------------------------------------------------------------------
+|
+| merubah format size ukuran file.
+|
+*/
+
 if (!function_exists('format_size')) {
 	function format_size($bytes)
 	{
@@ -116,19 +125,17 @@ if (!function_exists('format_size')) {
 
 /*
 |--------------------------------------------------------------------------
-| Check status config yang digunakan
+| Array Sum
 |--------------------------------------------------------------------------
 |
-| check status config yang digunakan untuk menjadi referensi dokumen.
+| menjumlahkan total pada array di kolom tertentu.
 |
 */
 
-function sts_check($id)
-{
-	$ci = get_instance();
-
-	$result = $ci->db->get_where('tbl_config', ['no' => $id, 'status' => '1']);
-	if ($result->num_rows() > 0) {
-		return "checked='checked'";
+if (!function_exists('arr_sum')) {
+	function arr_sum($arr, $kol)
+	{
+		$arr_sum = array_sum(array_column($arr, $kol));
+		return $arr_sum;
 	}
 }
