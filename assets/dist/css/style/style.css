@@ -66,6 +66,11 @@ button.btn.dropdown-toggle {
 	border: 1px solid #ced4da;
 }
 
+/* remove dropdown arrow */
+.dropdown-toggle::after{
+	content: none;
+}
+
 /* button extra small */
 .btn-xs {
 	padding: 1px 5px !important;
@@ -98,11 +103,6 @@ button.btn.dropdown-toggle {
 	display: none;
 }
 
-/* position dropdown menu user info */
-#dropdown-user {
-	left: -100%;
-}
-
 /*
 |--------------------------------------------------------------------------
 | Media Query
@@ -112,11 +112,6 @@ button.btn.dropdown-toggle {
 |
 */
 @media (min-width: 600px) {
-	#dropdown-user {
-		position: absolute;
-		left: -95px;
-	}
-
 	#table_info {
 		position: absolute;
 	}
