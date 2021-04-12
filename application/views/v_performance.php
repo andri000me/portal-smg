@@ -43,7 +43,19 @@ $this->load->view('template/navbar');
 
 			<div class="col-md-12" id="card_nasional" style="display: none;">
 				<div class="card mb-3">
-					<div class="card-header">Nasional</div>
+					<div class="card-header">
+						<span>Data Nasional</span>
+						<div class="dropdown float-right">
+							<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<img class="float-right" src="<?= base_url('assets/dist/') . 'img/download-icon.png' ?>" width="20">
+							</a>
+
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" id="export-btn">
+								<a class="dropdown-item" href="#" id="export-csv"><i class="fa fa-file-csv"></i> Export CSV</a>
+								<a class="dropdown-item" href="#" id="print-out"><i class="fa fa-print"></i> Print Out</a>
+							</div>
+						</div>
+					</div>
 					<div class="card-body">
 						<p class="font-weight-bold d-flex justify-content-end my-0">(dalam satuan Miliar)</p>
 						<table class="nowrap table table-sm table-boreder table-hover" id="tbl_nasional">
@@ -216,6 +228,9 @@ $this->load->view('template/navbar');
 				}
 			},
 			error: function() {
+				$('.btn_search').removeAttr('disabled').text('Bandingkan');
+				$('#form_filter')[0].reset();
+
 				Swal.fire({
 					title: 'Kesalah',
 					icon: 'danger',
